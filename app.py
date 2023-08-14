@@ -10,17 +10,17 @@ conn = Connection('amqp://rabbitmq:rabbitmq@localhost:5672//')
 
 channel = conn.channel()
 
-exchange = Exchange('DijkstraPathQuery', type='direct')
-queue = Queue('DijkstraPathQuery', exchange=exchange, routing_key='DijkstraPathQuery')
+exchange = Exchange('PathQuery', type='direct')
+queue = Queue('PathQuery', exchange=exchange, routing_key='PathQuery')
 
 def callback(body, message):
     print(body)
     producer = Producer(exchange=exchange, channel=channel, routing_key=s.routing_key)
-    queue = Queue(name=s.Q_NAME, exchange=exchange, routing_key=s.routing_key)
-    queue.maybe_bind(conn)
-    queue.declare()
+    queueResp = Queue(name=s.Q_NAME, exchange=exchange, routing_key=s.routing_key)
+    queueResp.maybe_bind(conn)
+    queueResp.declare()
 
-    producer.publish("===>>> " + time.strftime("%Y-%m-%d %H:%M:%S"))
+    producer.publish("===>>> " + body)
     message.ack()
 
 with Connection('amqp://rabbitmq:rabbitmq@localhost:5672//') as c:
