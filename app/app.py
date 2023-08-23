@@ -2,10 +2,12 @@ import time
 
 from amqp import channel
 from kombu import Connection, Exchange, Queue, Producer, Consumer
+
+
 import settings as s
 
 rabbit_url = s.RABBIT_URL
-
+from pathlib import Path
 conn = Connection('amqp://rabbitmq:rabbitmq@localhost:5672//')
 
 channel = conn.channel()
@@ -19,8 +21,7 @@ def callback(body, message):
     queueResp = Queue(name=s.Q_NAME, exchange=exchange, routing_key=s.routing_key)
     queueResp.maybe_bind(conn)
     queueResp.declare()
-
-    producer.publish("===>>> " + body)
+    producer.publish(body)
     message.ack()
 
 with Connection('amqp://rabbitmq:rabbitmq@localhost:5672//') as c:
