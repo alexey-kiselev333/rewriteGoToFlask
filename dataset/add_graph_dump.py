@@ -14,7 +14,7 @@ import random_name
 import simplejson
 
 data_dir = Path.home() / "whooshBack" / "dataset"
-filename = Path("graph.csv")
+filename = Path("graph_example.csv")
 
 # file = open('/home/alexey/pythonProject2/mockinghack/back/dataset/purchases.csv','r')
 #
@@ -120,6 +120,9 @@ if not rdb.db_list().contains('whoosh').run(conn):
 
 if not rdb.db('whoosh').table_list().contains('graph').run(conn):
     rdb.db('whoosh').table_create('graph').run(conn)
+
+if not rdb.db('whoosh').table_list().contains('dijkstra').run(conn):
+    rdb.db('whoosh').table_create('dijkstra',primary_key='idx').run(conn)
 
 for row in arr:
     rdb.db('whoosh').table('graph').insert({'index': row["index"], '0': row["0"],'1':row["1"],
