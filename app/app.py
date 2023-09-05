@@ -1,8 +1,12 @@
-import time
+import uuid
 
 from amqp import channel
 from kombu import Connection, Exchange, Queue, Producer, Consumer
+from tasks import sum2
 
+
+print('dsfsfs',sum2(2,1))
+import rethinkdb as r
 
 import settings as s
 
@@ -28,3 +32,4 @@ with Connection('amqp://rabbitmq:rabbitmq@localhost:5672//') as c:
     while True:
         with Consumer(c.default_channel, queues=[queue], callbacks=[callback]):
             c.drain_events()
+

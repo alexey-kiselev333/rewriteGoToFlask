@@ -18,11 +18,6 @@ def dist(a, b):
 
 
 def calculate_dijkstra(table_id,point_start, point_finish):
-    # t = TicToc()  # create instance of class
-    # lo, hi = t.tic(), t.toc()
-    #
-    # is_ok = False
-
     nodes = []
     node_id_start = ''
     node_id_finish = ''
