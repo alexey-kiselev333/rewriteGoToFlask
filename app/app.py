@@ -3,6 +3,7 @@ import uuid
 from amqp import channel
 from kombu import Connection, Exchange, Queue, Producer, Consumer
 from tasks import sum2
+from tasks import add
 
 
 print('dsfsfs',sum2(2,1))
@@ -25,6 +26,8 @@ def callback(body, message):
     queueResp = Queue(name=s.Q_NAME, exchange=exchange, routing_key=s.routing_key)
     queueResp.maybe_bind(conn)
     queueResp.declare()
+    table_id = uuid.uuid4()
+    add.delay(table_id)
     producer.publish(body)
     message.ack()
 
