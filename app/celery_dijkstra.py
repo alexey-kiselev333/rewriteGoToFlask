@@ -55,15 +55,10 @@ def calculate_dijkstra(table_id,point_start, point_finish):
     return nx.dijkstra_path(G, str(node_id_start), str(node_id_finish))
 
 
-def calculate_path(table_id):
+def calculate_path(table_id,point_start,point_finish):
     dijkstra_result = str(calculate_dijkstra(table_id,
-        {'lat': 37.52609142135623,
-         'lon': 55.6979707106781},
-        {'lat': 37.52865208152803,
-         'lon': 55.69789999999999}
-    ))
-
-
+                                             point_start,
+                                             point_finish))
 
     rdb.db('whoosh').table(str(table_id)).insert(
         {'result': dijkstra_result
