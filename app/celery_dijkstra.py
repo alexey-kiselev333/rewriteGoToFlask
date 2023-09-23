@@ -6,7 +6,7 @@ from pytictoc import TicToc
 import uuid
 
 rdb = r.RethinkDB()
-conn = rdb.connect(host='localhost', port=28015)
+conn = rdb.connect(host='rethinkdb', port=28015)
 
 
 def generate_id():

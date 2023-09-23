@@ -113,7 +113,7 @@ df = df.fillna('')
 arr = df.to_dict(orient="records")
 
 rdb = r.RethinkDB()
-conn = rdb.connect(host='localhost', port=28015)
+conn = rdb.connect(host='rethinkdb', port=28015)
 
 if not rdb.db_list().contains('whoosh').run(conn):
     rdb.db_create('whoosh').run(conn)

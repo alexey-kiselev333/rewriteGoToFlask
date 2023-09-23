@@ -2,7 +2,7 @@ from celery import Celery
 #
 from celery_dijkstra import calculate_path
 #
-app = Celery('tasks', backend='redis://localhost:6379/0', broker='amqp://rabbitmq:rabbitmq@localhost//')
+app = Celery('tasks', backend='redis://redis:6379/0', broker='amqp://guest:guest@rabbitmq_whoosh//')
 
 
 def sum2(x,y):

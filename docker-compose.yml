@@ -50,7 +50,7 @@ services:
       - 15672:15672
       - 15674:15674
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:15672" ]
+      test: rabbitmq-diagnostics -q ping
       interval: 15s
       timeout: 10s
       start_period: 1s
@@ -75,5 +75,4 @@ services:
 volumes:
   rethinkdb_data: null
   rabbitmq_data: null
-  redis:
-    driver: local
+  redis: null

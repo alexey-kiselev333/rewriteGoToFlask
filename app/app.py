@@ -17,11 +17,11 @@ import settings as s
 rabbit_url = s.RABBIT_URL
 from pathlib import Path
 
-conn = Connection('amqp://rabbitmq:rabbitmq@localhost:5672//')
+conn = Connection('amqp://guest:guest@rabbitmq_whoosh:5672//')
 
 channel = conn.channel()
 rdb = r.RethinkDB()
-connReth = rdb.connect(host='localhost', port=28015)
+connReth = rdb.connect(host='rethinkdb', port=28015)
 exchange = Exchange('PathQuery', type='direct')
 queue = Queue('PathQuery', exchange=exchange, routing_key='PathQuery')
 
@@ -47,7 +47,6 @@ def callback(body, message):
 
     thread.start()
 
-
     feed = rdb.db('whoosh').table(str(table_id)).changes().run(connReth)
     flag = False
     for change in feed:
@@ -65,11 +64,10 @@ def callback(body, message):
 
     thread.join()
 
-
     message.ack()
 
 
-with Connection('amqp://rabbitmq:rabbitmq@localhost:5672//') as c:
+with Connection('amqp://guest:guest@rabbitmq_whoosh:5672//') as c:
     while True:
         with Consumer(c.default_channel, queues=[queue], callbacks=[callback]):
             c.drain_events()
