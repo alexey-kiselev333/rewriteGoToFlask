@@ -26,9 +26,6 @@ def calculate_dijkstra(table_id,point_start, point_finish):
         record = []
         i += 1
 
-        if not rdb.db('whoosh').table_list().contains(str(table_id)).run(conn):
-            rdb.db('whoosh').table_create(str(table_id)).run(conn)
-
         data = rdb.db('whoosh').table('graph').filter({'index': i}).run(conn)
 
         for element in data:
