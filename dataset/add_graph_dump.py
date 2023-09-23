@@ -14,7 +14,7 @@ import random_name
 import simplejson
 
 data_dir = Path.home() / "whooshBack" / "dataset"
-filename = Path("graph_example.csv")
+filename = Path("graph.csv")
 
 # file = open('/home/alexey/pythonProject2/mockinghack/back/dataset/purchases.csv','r')
 #
