@@ -18,7 +18,7 @@ rabbit_url = s.RABBIT_URL
 from pathlib import Path
 
 conn = Connection('amqp://guest:guest@rabbitmq_whoosh:5672//')
-
+#celery -A tasks flower
 channel = conn.channel()
 rdb = r.RethinkDB()
 connReth = rdb.connect(host='rethinkdb', port=28015)

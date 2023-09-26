@@ -37,8 +37,6 @@ services:
       - redis:/data
   rabbitmq_whoosh:
     container_name: rabbitmq_whoosh
-#    image: rabbitmq_whoosh
-#    hostname: rabbitmq
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     build:
@@ -55,6 +53,23 @@ services:
       timeout: 10s
       start_period: 1s
       retries: 5
+  celery:
+    container_name: celery
+    restart: always
+    build:
+      context: .
+    command: celery -A tasks worker --loglevel=INFO
+    volumes:
+      - .:/app
+    ports:
+      - 5000:5000
+    depends_on:
+      rabbitmq_whoosh:
+        condition: service_healthy
+      rethinkdb:
+        condition: service_started
+      redis:
+        condition: service_started
 
   api:
     container_name: api
@@ -65,14 +80,11 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      rabbitmq_whoosh:
-        condition: service_healthy
-      rethinkdb:
-        condition: service_started
-      redis:
+      celery:
         condition: service_started
 
 volumes:
   rethinkdb_data: null
   rabbitmq_data: null
   redis: null
+  celery: null

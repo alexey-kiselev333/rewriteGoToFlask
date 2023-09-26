@@ -12,4 +12,4 @@ COPY . /
 
 ENTRYPOINT [ "python3" ]
 CMD ["dataset/add_graph_dump.py"]
-CMD [ "app/app.py" ]
+CMD [ "app.py" ]
