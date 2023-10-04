@@ -1,4 +1,4 @@
-from app.tasks import add
+from tasks import add
 import uuid
 
 

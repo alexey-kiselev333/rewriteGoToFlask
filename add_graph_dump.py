@@ -13,8 +13,8 @@ import numpy as np
 import random_name
 import simplejson
 
-data_dir = Path.home() / "whooshBack" / "dataset"
-filename = Path("graph.csv")
+data_dir = '/application'
+filename = Path("/application/graph.csv")
 
 # file = open('/home/alexey/pythonProject2/mockinghack/back/dataset/purchases.csv','r')
 #
