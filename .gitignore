@@ -1,5 +1,5 @@
 .idea/
-dataset/graph.csv
+graph.csv
 graph_example.csv
 
 redis.conf
