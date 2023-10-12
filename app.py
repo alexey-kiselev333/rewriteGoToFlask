@@ -9,7 +9,7 @@ from ast import literal_eval
 from celery_dijkstra import dist
 import json
 
-print('dsfsfs', sum2(2, 1))
+
 import rethinkdb as r
 
 import settings as s
