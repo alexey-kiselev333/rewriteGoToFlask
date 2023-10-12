@@ -14,7 +14,7 @@ def generate_id():
 
 
 def dist(a, b):
-    return math.sqrt((a["lat"] - b["0"]) * (a["lat"] - b["0"]) + (a["lon"] - b["1"]) * (a["lon"] - b["1"]))
+    return math.sqrt((a["lon"] - b["0"]) * (a["lon"] - b["0"]) + (a["lat"] - b["1"]) * (a["lat"] - b["1"]))
 
 
 def calculate_dijkstra(table_id,point_start, point_finish):

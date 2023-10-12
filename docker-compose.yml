@@ -63,7 +63,7 @@ services:
    working_dir: /application
    command:  python3 add_graph_dump.py
    volumes:
-     - db_generator2:/application
+     - db_generator4:/application
    depends_on:
           rethinkdb:
             condition: service_started
@@ -85,5 +85,4 @@ volumes:
   rethinkdb_data: null
   rabbitmq_data: null
   redis: null
-  celery: null
-  db_generator2: null
+  db_generator4: null

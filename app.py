@@ -33,10 +33,10 @@ def callback(body, message):
     queueResp.declare()
     # print(body)
     body = json.loads(body)
-    point_start = body["point_start"]
+    point_start = body["startPoint"]
     print(point_start)
 
-    point_finish = body["point_finish"]
+    point_finish = body["endPoint"]
 
     print(point_finish)
     table_id = uuid.uuid4()
